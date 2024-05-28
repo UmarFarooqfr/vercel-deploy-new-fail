@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import http from "http";
-import { routes } from "./src/route";
+import { routes } from "./src/route"; // Check if this path is correct
 import express, { Request, Response } from "express";
 
 const bodyParser = require("body-parser");
@@ -28,11 +28,12 @@ app.use((req, res, next) => {
 
 const PORT = 3000;
 export const TOKEN_KEY = "11223344";
-routes(app);
+routes(app); // Check if app is an instance of express.Application
 const URL = "mongodb+srv://wwwburjsoft:gBLTbWrZsDYS9kR5@cluster0.k2bwmju.mongodb.net/";
   app.listen(PORT, () => {
   console.log(`*** App is listening ${PORT} ***`);
 });
+
 // root routes
 app.get("/", (req: Request, res:Response) => {
   res.status(200).json({ message: "*** API is running fast! ***" });
