@@ -1,6 +1,7 @@
-import express from 'express';
-import signUpRouter from './api/signup'; // Import the router, not the entire module
-
-export const routes = function (app: express.Application): void {
-    app.use('/api/user', signUpRouter); // Use the router
-}
+export const routes = function (app: any): void {
+    app.use('/api/user', require('./api/signup'));
+    app.use('/api/UserDevice', require('./api/usersDevices'));
+    app.use('/api/circle', require('./api/circle'));
+    app.use('/api/approvalNotification', require('./api/approvalNotification'));
+    app.use('/api/rejectedUsers', require('./api/rejectedUsers'))
+  }
