@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 
 const PORT = 3000;
 export const TOKEN_KEY = "11223344";
-// routes(app);
+routes(app);
 const URL = "mongodb+srv://wwwburjsoft:gBLTbWrZsDYS9kR5@cluster0.k2bwmju.mongodb.net/";
   app.listen(PORT, () => {
   console.log(`*** App is listening ${PORT} ***`);
