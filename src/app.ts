@@ -63,7 +63,6 @@ const io = socketIo(server, {
   cors: {
     origin: '*',
   },
-  transports: ['websocket']
 });
 
 
