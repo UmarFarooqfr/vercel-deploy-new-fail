@@ -59,7 +59,7 @@ export async function requestNotification(name: string, memberName: string, memb
   }
 
 
-const io = socketIo(server, {
+const io = socketIo(app, {
   cors: {
     origin: '*',
   },
@@ -123,7 +123,7 @@ mongoose
   .catch((error) => {
     console.log("Connection failed!:", error);
   });
-server.listen(port, () => {
+  app.listen(port, () => {
   console.log(`Express server listening ${port}`);
   app.get('/', function (req, res) {
     res.send('**** Hello World! ****');
