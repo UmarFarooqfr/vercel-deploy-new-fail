@@ -60,6 +60,7 @@ export async function requestNotification(name: string, memberName: string, memb
 
 
 const io = socketIo(server, {
+  path: '/socket.io',
   cors: {
     origin: '*',
   },
