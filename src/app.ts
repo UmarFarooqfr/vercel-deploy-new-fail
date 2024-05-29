@@ -74,8 +74,13 @@ io.on('connection', (socket) => {
   //io.emit('notification', `Congratulations, sdsdsds! You have successfully logged in.`);
 
   socket.on('register', (data) => {
-    //console.log(`Register event received for user: ${data.userName}`);
+    console.log(`Register event received for user: ${data}`);
     connectedUsers.set(data.userId, socket.id);
+    const socketId = connectedUsers.get('dsdsdsddsdsdsds');
+    console.log('socketId: ', socketId);
+    io.to(socketId).emit('notification', ` $sdsdsd! banned you from circle`);
+
+
    // console.log(connectedUsers)
     //console.log(`User registered: ${data.userName} with socket ID: ${socket.id}`);
   });
@@ -129,5 +134,6 @@ server.listen(port, () => {
     res.send('**** Hello World! ****');
   });
 });
+console.log('server: ', server);
 export default app;
 
