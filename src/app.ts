@@ -65,7 +65,6 @@ const io = socketIo(server, {
     origin: '*',
   },
 });
-const port = 3000;
 
 
 const connectedUsers = new Map();
@@ -98,11 +97,8 @@ io.on('connection', (socket) => {
 app.use(express.urlencoded({ limit: "150mb", extended: true }));
 app.use(bodyParser.json({ limit: "150mb" }));
 app.use(express.json());
-app.use(cors({ 
-  origin: "*", 
-  methods: ["GET", "POST"], // Include WebSocket methods
-  allowedHeaders: ["Content-Type", "Authorization"], // Adjust headers if needed
-}));
+app.use(cors({ origin: "*"}));
+
 app.use((req, res, next) => {
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -116,6 +112,7 @@ app.use((req, res, next) => {
   );
   next();
 });
+const port = 3000;
 export const TOKEN_KEY = "11223344";
 routes(app);
 const url = `mongodb+srv://wwwburjsoft:gBLTbWrZsDYS9kR5@cluster0.k2bwmju.mongodb.net/?retryWrites=true&w=majority`;
