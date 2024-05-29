@@ -61,7 +61,7 @@ export async function requestNotification(name: string, memberName: string, memb
 
 const io = socketIo(server, {
   cors: {
-    origin: '*',
+    origin: 'http://localhost:4200',
   },
 });
 
