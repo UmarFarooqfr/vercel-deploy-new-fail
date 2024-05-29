@@ -81,15 +81,15 @@ io.on('connection', (socket) => {
   });
 
   //sendNotification("Fakhar")
-  // socket.on('disconnect', () => {
-  //   for (let [userName, socketId] of connectedUsers.entries()) {
-  //     if (socketId === socket.id) {
-  //       connectedUsers.delete(userName);
-  //       console.log(`User disconnected: ${userName}`);
-  //       break;
-  //     }
-  //   }
-  // });
+  socket.on('disconnect', () => {
+    for (let [userName, socketId] of connectedUsers.entries()) {
+      if (socketId === socket.id) {
+        connectedUsers.delete(userName);
+        console.log(`User disconnected: ${userName}`);
+        break;
+      }
+    }
+  });
 });
 
 
