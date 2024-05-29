@@ -63,6 +63,8 @@ const io = socketIo(server, {
   cors: {
     origin: '*',
   },
+  pingTimeout: 60000, // Set the pingTimeout to 60 seconds (60000 milliseconds)
+  allowEIO3: true, // Allow the usage of EIO3 protocol
 });
 
 
