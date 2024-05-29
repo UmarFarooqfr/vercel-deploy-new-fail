@@ -1,8 +1,8 @@
+import express from "express";
 import mongoose from "mongoose";
 import http from "http";
 import { routes } from "./route";
 const socketIo = require('socket.io')
-import express, { Request, Response } from "express";
 
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -61,7 +61,7 @@ export async function requestNotification(name: string, memberName: string, memb
 
 const io = socketIo(server, {
   cors: {
-    origin: 'http://localhost:4200',
+    origin: '*',
   },
 });
 
@@ -81,15 +81,15 @@ io.on('connection', (socket) => {
   });
 
   //sendNotification("Fakhar")
-  socket.on('disconnect', () => {
-    for (let [userName, socketId] of connectedUsers.entries()) {
-      if (socketId === socket.id) {
-        connectedUsers.delete(userName);
-        console.log(`User disconnected: ${userName}`);
-        break;
-      }
-    }
-  });
+  // socket.on('disconnect', () => {
+  //   for (let [userName, socketId] of connectedUsers.entries()) {
+  //     if (socketId === socket.id) {
+  //       connectedUsers.delete(userName);
+  //       console.log(`User disconnected: ${userName}`);
+  //       break;
+  //     }
+  //   }
+  // });
 });
 
 
@@ -111,7 +111,7 @@ app.use((req, res, next) => {
   );
   next();
 });
-const PORT = 3000;
+const port = 3000;
 export const TOKEN_KEY = "11223344";
 routes(app);
 const url = `mongodb+srv://wwwburjsoft:gBLTbWrZsDYS9kR5@cluster0.k2bwmju.mongodb.net/?retryWrites=true&w=majority`;
@@ -123,12 +123,11 @@ mongoose
   .catch((error) => {
     console.log("Connection failed!:", error);
   });
-  app.listen(PORT, () => {
-    console.log(`*** App is listening ${PORT} ***`);
+server.listen(port, () => {
+  console.log(`Express server listening ${port}`);
+  app.get('/', function (req, res) {
+    res.send('**** Hello World! ****');
   });
-  
-  // root routes
-  app.get("/", (req: Request, res:Response) => {
-    res.status(200).json({ message: "*** API is running fast! ***" });
-  });
-export default server;
+});
+export default app;
+
